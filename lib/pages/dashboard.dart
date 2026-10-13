@@ -1,3 +1,4 @@
+import 'package:democlasssecc/pages/detailpage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -6,70 +7,81 @@ class dashboard extends StatefulWidget {
   const dashboard({super.key});
 
   @override
-  State<dashboard> createState() => _dashboardState();
+  State<dashboard> createState() => dashboardState();
 }
 
-class _dashboardState extends State<dashboard> {
+class dashboardState extends State<dashboard> {
 
   horizontalitem(size, String title, url, date){
-    return Stack(
-      children: [
-        Container(
-          margin: EdgeInsets.only(left: 10, right: 10, top: 8),
-          height:size.height/5,
-          decoration: BoxDecoration(
-            color: Colors.grey,
-            borderRadius: BorderRadius.circular(20),
+    return GestureDetector(
+      onTap: (){
+        Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (context) => detailpage(),
           ),
-          width: size.width/1.5,
+        );
+      },
 
 
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child:Image.network(url,
-              fit: BoxFit.cover,
+      child: Stack(
+        children: [
+          Container(
+            margin: EdgeInsets.only(left: 10, right: 10, top: 8),
+            height:size.height/5,
+            decoration: BoxDecoration(
+              color: Colors.grey,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            width: size.width/1.5,
+
+
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child:Image.network(url,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-        ),
 
-        Container(
+          Container(
 
-          margin: EdgeInsets.only(left:10, right: 10, top: 8),
-          height: size.height/5,
+            margin: EdgeInsets.only(left:10, right: 10, top: 8),
+            height: size.height/5,
 
-          width: size.width/1.5,
+            width: size.width/1.5,
 
-          decoration: BoxDecoration(
-            color: Colors.black26,
-            borderRadius: BorderRadius.circular(20),
+            decoration: BoxDecoration(
+              color: Colors.black26,
+              borderRadius: BorderRadius.circular(20),
 
+            ),
           ),
-        ),
 
 
-        Positioned(bottom:40, left: 30,
-            child: Container(
-                width: size.width/2,
-                child: Text(title,
-                  overflow: TextOverflow.ellipsis,maxLines: 2,
-                  style: TextStyle(color: Colors.white),)
-            )),
-        Positioned(bottom:20, left: 30,
-            child: Container(width: size.width/2,
-                child: Text("2026-10-06 Tuesday",
-                  overflow: TextOverflow.ellipsis,maxLines: 2,
-                  style: TextStyle(color: Colors.white),)
-            )),
-        Positioned(bottom:20, right: 30,
-            child: Container(
-              child: Icon(Icons.play_circle, color: Colors.white,size: 30,),
+          Positioned(bottom:40, left: 30,
+              child: Container(
+                  width: size.width/2,
+                  child: Text(title,
+                    overflow: TextOverflow.ellipsis,maxLines: 2,
+                    style: TextStyle(color: Colors.white),)
+              )),
+          Positioned(bottom:20, left: 30,
+              child: Container(width: size.width/2,
+                  child: Text("2026-10-06 Tuesday",
+                    overflow: TextOverflow.ellipsis,maxLines: 2,
+                    style: TextStyle(color: Colors.white),)
+              )),
+          Positioned(bottom:20, right: 30,
+              child: Container(
+                child: Icon(Icons.play_circle, color: Colors.white,size: 30,),
 
-            ))
-      ],
+              ))
+        ],
+      ),
     );
   }
 
-  verticallistitem(size, String title, url, date, source){
+  static verticallistitem(size, String title, url, date, source){
     return Container(
       margin: EdgeInsets.all(15),
       child: Row(
